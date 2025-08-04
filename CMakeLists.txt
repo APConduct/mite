@@ -15,12 +15,22 @@ FetchContent_Declare(
     GIT_TAG 5.0
 )
 
+# Fetch Google Test
+FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG v1.14.0
+)
+
 # Set raylib configuration options
 set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
 set(BUILD_GAMES OFF CACHE BOOL "" FORCE)    # don't build the supplied example games
 
-# Make raylib available
-FetchContent_MakeAvailable(raylib)
+# Set Google Test configuration options
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+# Make both libraries available
+FetchContent_MakeAvailable(raylib googletest)
 
 add_executable(mite)
 
@@ -39,6 +49,35 @@ target_sources(mite PRIVATE
 
 # Link raylib to the mite target
 target_link_libraries(mite raylib)
+
+# Enable testing
+enable_testing()
+
+# Create a test executable (optional - you can add test files later)
+# add_executable(mite_tests
+#     tests/test_point.cpp
+#     tests/test_size.cpp
+#     tests/test_square.cpp
+#     tests/test_rect.cpp
+# )
+#
+# target_sources(mite_tests
+#     PUBLIC
+#     FILE_SET CXX_MODULES
+#     FILES
+#     include/modules/mite/flat/point.ixx
+#     include/modules/mite/flat/size.ixx
+#     include/modules/mite/square.ixx
+#     include/modules/mite/rect.ixx
+# )
+#
+# target_link_libraries(mite_tests
+#     gtest_main
+#     gmock_main
+# )
+#
+# include(GoogleTest)
+# gtest_discover_tests(mite_tests)
 
 # Platform-specific configurations
 if(WIN32)
