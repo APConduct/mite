@@ -1,1 +1,5 @@
-int main(){}
+import mite;
+
+int main() {
+
+}
