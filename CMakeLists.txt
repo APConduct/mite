@@ -18,4 +18,5 @@ target_sources(mite PRIVATE
         include/modules/mite/flat/point.ixx
         include/modules/mite/flat/size.ixx
         include/modules/mite/flat/mod.ixx
+        include/modules/mite/square.ixx
 )

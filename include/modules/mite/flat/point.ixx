@@ -1,5 +1,6 @@
 module;
 #include <type_traits>
+#include <cmath>
 
 export module mite.point;
 
@@ -252,6 +253,12 @@ export namespace mite {
         concept HasPointMember = requires(T t)
         {
             t.point;
+        } || requires(T t) {
+            t.origin;
+        } || requires(T t) {
+            t.pos;
+        } || requires(T t) {
+            t.position;
         };
 
         /**
@@ -263,6 +270,12 @@ export namespace mite {
         concept HasPointMethod = requires(T t)
         {
             t.point();
+        } || requires(T t) {
+            t.origin();
+        } || requires(T t) {
+            t.pos();
+        } || requires(T t) {
+            t.position();
         };
 
         /**
