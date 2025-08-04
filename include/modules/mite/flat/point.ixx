@@ -201,7 +201,7 @@ export namespace mite {
     template <typename T>
     concept HasXposMethod = requires(T t)
     {
-        t.y() && std::is_arithmetic_v<decltype(t.x())>;
+        t.x() && std::is_arithmetic_v<decltype(t.x())>;
     };
 
     /**
